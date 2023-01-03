@@ -25,11 +25,8 @@
 		"nodemon": "^2.0.20"
 	},
 	"pkg": {
-		"assets": [
-			"settings.ini"
-		],
 		"targets": [
-			"node16-win-x64"
+			"node18-win-x64"
 		]
 	}
 }
