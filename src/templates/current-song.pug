@@ -1,0 +1,81 @@
+html
+  head
+    meta(charset="utf-8")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css")
+    link(rel="preconnect" href="https://fonts.googleapis.com")
+    link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap" )
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0")
+    style. 
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .d-flex {
+        display: flex;
+      }
+
+      .flex-column {
+        flex-direction: column;
+      }
+
+      .justify-center {
+        justify-content: center;
+      }
+
+      .align-center {
+        align-items: center;
+      }
+
+      .container {
+        width: 100vw;
+        height: 100vh;
+      }
+
+      #current-song-container {
+        border-radius: 15px;
+        background-color: #2e2e2e;
+        height: 130px;
+      }
+
+      #current-song span {
+        font-size: 4vw;
+        font-family: 'Ubuntu', sans-serif;
+        color: white;
+      }
+
+      #current-song i {
+        font-size: 5vw;
+        color: #fdd835;
+        margin-right: 20px;
+      }
+  body 
+    .container
+      #current-song-container.d-flex.flex-column.justify-center.align-center.animate__animated
+        #current-song
+          span.d-flex.align-center
+            i.material-symbols-outlined headphones
+            #song ...
+          span.d-flex.align-center
+            i.material-symbols-outlined mic 
+            #artist ...
+    script(src="/socket.io/socket.io.js") 
+    script.
+      const container = document.getElementById("current-song-container");
+      const song = document.getElementById("song");
+      const artist = document.getElementById("artist");
+
+      const socket = io("/current-song");
+
+      socket.on("song", (data) => {
+        if (!data.song) {
+          container.classList.remove("animate__fadeIn");
+          container.classList.add("animate__fadeOut");
+        } else {
+          container.classList.remove("animate__fadeOut");
+          container.classList.add("animate__fadeIn");
+          song.innerText = data.song;
+          artist.innerText = data.artist;
+        }
+      });
