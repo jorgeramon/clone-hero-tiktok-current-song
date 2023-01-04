@@ -25,7 +25,10 @@
 		"nodemon": "^2.0.20"
 	},
 	"pkg": {
-		"assets": "src/templates",
+		"assets": [
+			"src/templates",
+			"node_modules/socket.io/client-dist/*.js"
+		],
 		"targets": [
 			"node18-win-x64"
 		]
