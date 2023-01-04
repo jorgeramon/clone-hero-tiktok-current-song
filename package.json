@@ -25,6 +25,7 @@
 		"nodemon": "^2.0.20"
 	},
 	"pkg": {
+		"assets": "src/templates",
 		"targets": [
 			"node18-win-x64"
 		]

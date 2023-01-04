@@ -1,6 +1,7 @@
 const fastify = require("fastify");
 const fastifyIO = require("fastify-socket.io");
 const logger = require("./util/logger");
+const { join } = require("node:path");
 const { onCurrentSongChange, getCurrentSong } = require("./rx/current-song");
 
 const server = fastify();
@@ -10,10 +11,11 @@ server.register(require("@fastify/view"), {
 	engine: {
 		pug: require("pug"),
 	},
+	root: join(__dirname, "templates"),
 });
 
 server.get("/song", (request, reply) => {
-	reply.view("src/templates/current-song.pug");
+	reply.view("current-song.pug");
 });
 
 server.ready().then(function () {
